@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ─── 1tapfix Brand Theme (Tailwind v4) ──────────────────── */
+@theme {
+  /* Colors */
+  --color-regalNavy: #134074;
+  --color-regalNavy-hover: #0E325C;
+  --color-regalNavy-light: #1D5392;
+  --color-oxfordNavy: #13315C;
+  --color-oxfordNavy-hover: #0D2242;
+  --color-prussianBlue: #0B2545;
+  --color-prussianBlue-dark: #071930;
+  --color-powderBlue: #8DA9C4;
+  --color-powderBlue-light: #DCE6F1;
+  --color-powderBlue-soft: #EEF4ED;
+  --color-mintCream: #EEF4ED;
+  --color-mintCream-light: #F5F9F4;
+  --color-semanticSuccess: #22C55E;
+  --color-semanticWarning: #F59E0B;
+  --color-semanticError: #EF4444;
+  --color-semanticInfo: #3B82F6;
+
+  /* Fonts */
+  --font-sans: 'Inter', sans-serif;
+  --font-heading: 'Manrope', sans-serif;
+
+  /* Border radius */
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-3xl: 24px;
+
+  /* Box shadows */
+  --shadow-soft: 0 4px 20px -2px rgba(19, 64, 116, 0.05);
+  --shadow-card: 0 10px 30px -4px rgba(11, 37, 69, 0.06);
+  --shadow-dropdown: 0 20px 40px -8px rgba(11, 37, 69, 0.12);
+}
+
+/* ─── CSS Variables for Theme Tokens ─────────────── */
+:root {
+  --bg-primary: #F8FAFC;
+  --bg-surface: #FFFFFF;
+  --bg-subtle: #F1F5F9;
+  --border-color: #E2E8F0;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #64748B;
+  --brand-navy: #0B2545;
+  --brand-blue: #134074;
+}
+
+.dark {
+  /* Core Theme Tokens - Header/Footer = Darkest (#000000), Canvas = Little Lighter (#09090B), Cards = Even More Lighter (#141416) */
+  --bg-primary: #09090B;
+  --bg-surface: #141416;
+  --bg-subtle: #202025;
+  --border-color: #27272D;
+  --border-subtle: #1E1E24;
+  --text-primary: #FFFFFF;
+  --text-secondary: #A1A1AA;
+  --text-muted: #71717A;
+  --brand-navy: #38BDF8;
+  --brand-blue: #60A5FA;
+
+  /* Tailwind Palette Overrides for Dark Mode */
+  --color-slate-950: #09090B; /* Little lighter canvas / page body */
+  --color-slate-900: #141416; /* Even more lighter cards / modals / elevated surfaces */
+  --color-slate-850: #1A1A1F;
+  --color-slate-800: #202025; /* Subtle secondary containers / table headers / inputs */
+  --color-slate-700: #2C2C33; /* Subtle matching borders / dividers */
+  --color-slate-600: #383842;
+  --color-slate-500: #71717A;
+  --color-slate-400: #A1A1AA; /* Clean neutral secondary text */
+  --color-slate-300: #D4D4D8;
+  --color-slate-200: #E4E4E7;
+  --color-slate-100: #F4F4F5;
+  --color-slate-50: #FAFAFA;
+
+  /* Status badge dark container overrides to blend seamlessly with pitch black */
+  --color-emerald-950: #041B11;
+  --color-amber-950: #1C1204;
+  --color-rose-950: #1C060B;
+  --color-blue-950: #07152B;
+  --color-cyan-950: #041720;
+  --color-indigo-950: #0E0D24;
+  --color-purple-950: #170824;
+  --color-red-950: #1A0606;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Manrope', sans-serif;
+}
+
+/* Modal Overlay backdrop */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(11, 20, 38, 0.72);
+  backdrop-filter: blur(8px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dark .modal-overlay {
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+}
+
+/* Custom dark scrollbar matching darkest black */
+.dark ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.dark ::-webkit-scrollbar-track {
+  background: #000000;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #222226;
+  border-radius: 4px;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #33333A;
+}
+
+/* Nav Link Underline Hover Effect */
+.nav-link {
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: #134074;
+  transition: width 0.25s ease-in-out;
+}
+
+.dark .nav-link::after {
+  background-color: #60A5FA;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Invert Logo Color in Dark Theme */
+.dark img[src*="logo.png"],
+.dark .brand-logo {
+  filter: invert(1);
+}
